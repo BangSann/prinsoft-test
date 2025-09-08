@@ -27,7 +27,7 @@
     </header>
 
     <section class="container mx-auto">
-        <div class="grid grid-cols-4">
+        <div class="grid grid-cols-4 gap-4 mt-4">
 
             <?php foreach ($produk as $p): ?>
                 <div class="p-3 rounded-sm shadow-md flex justify-between items-center">
@@ -37,7 +37,7 @@
                         <p class="text-sm font-semibold"><?= esc($p['satuan']) ?></p>
                     </div>
                     <div>
-                        <a class="p-2 bg-green-500" href="<?= site_url('transaksi/produk/' . $p['id']) ?>">Buy</a>
+                        <a class="p-2 bg-green-500 text-white rounded-md" href="<?= site_url('transaksi/produk/' . $p['id']) ?>">Buy</a>
                     </div>
                 </div>
             <?php endforeach; ?>
