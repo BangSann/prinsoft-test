@@ -26,36 +26,78 @@
         </div>
     </header>
 
-    <section class="container mx-auto flex justify-center items-center h-screen">
-        <div class="p-4 rounded-md shadow-md">
-            <div>
-                <p>Nama Produk</p>
-                <p>
-                    <?= $produk["nama"] ?>
-                </p>
-            </div>
-            <div>
-                <p>Harga</p>
-                <p>
-                    <?= $produk["satuan"] ?>
-                </p>
-            </div>
-            <div>
-                <p>Satuan</p>
-                <p>
-                    <?= $produk["jenis_formula"] ?>
-                </p>
+    <section class="container mx-auto flex justify-center items-center h-[70vh]">
+        <div class="p-6 rounded-md shadow-md min-w-[350px] bg-white">
+            <div class="flex justify-between mb-2">
+                <p class="font-semibold">Nama Produk</p>
+                <p><?= $produk["nama"] ?></p>
             </div>
 
-            <div>
-                <p>Jumlah</p>
-                <p>
-                    <?= $produk["satuan"] ?>
-                </p>
+            <div class="flex justify-between mb-2">
+                <p class="font-semibold">Harga</p>
+                <p id="harga"><?= $produk["satuan"] ?></p>
+            </div>
+
+            <div class="flex justify-between mb-2">
+                <p class="font-semibold">Satuan</p>
+                <p><?= $produk["jenis_formula"] ?></p>
+            </div>
+
+            <div class="flex justify-between mb-2">
+                <p class="font-semibold">Jumlah</p>
+                <p id="jumlah">1</p>
+            </div>
+
+            <div class="flex justify-between mb-2">
+                <p class="font-semibold">Total</p>
+                <p id="total"><?= $produk["satuan"] ?></p>
+            </div>
+
+            <!-- Tombol -->
+            <div class="flex gap-3 mt-4 justify-between">
+                <button onclick="kurangi()"
+                    class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Kurangi</button>
+                <button onclick="tambah()"
+                    class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Tambah</button>
+            </div>
+
+            <div class="mt-4">
+                <button onclick="checkout()"
+                    class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Checkout</button>
+            </div>
+            <div class="mt-4 w-full">
+                <a href="../"
+                    class="w-full px-4 py-2 bg-slate-100 outline rounded-md hover:bg-blue-700">Kembali</a>
             </div>
         </div>
-
     </section>
+
+    <script>
+        let harga = <?= $produk["satuan"] ?>;  // Harga dari produk
+        let jumlah = 1;
+
+        function updateTotal() {
+            document.getElementById("jumlah").textContent = jumlah;
+            document.getElementById("total").textContent = harga * jumlah;
+        }
+
+        function tambah() {
+            jumlah++;
+            updateTotal();
+        }
+
+        function kurangi() {
+            if (jumlah > 1) {
+                jumlah--;
+                updateTotal();
+            }
+        }
+
+        function checkout() {
+            alert("Checkout berhasil!\nProduk: <?= $produk["nama"] ?>\nJumlah: " + jumlah + "\nTotal: Rp " + (harga * jumlah));
+        }
+    </script>
+
 </body>
 
 </html>

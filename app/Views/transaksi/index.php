@@ -30,12 +30,17 @@
         <div class="grid grid-cols-4">
 
             <?php foreach ($produk as $p): ?>
-                <div class="px-4 py-2 text-sm text-gray-800"><?= esc($p['nama']) ?></div>
-                <div>
-                    <a href="<?= site_url('transaksi/produk/' . $p['id']) ?>">Buy</a>
+                <div class="p-3 rounded-sm shadow-md flex justify-between items-center">
+
+                    <div class="space-y-2">
+                        <div class="text-xl text-gray-800"><?= esc($p['nama']) ?></div>
+                        <p class="text-sm font-semibold"><?= esc($p['satuan']) ?></p>
+                    </div>
+                    <div>
+                        <a class="p-2 bg-green-500" href="<?= site_url('transaksi/produk/' . $p['id']) ?>">Buy</a>
+                    </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
     </section>
 </body>
